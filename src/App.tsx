@@ -5,15 +5,16 @@ import {v1} from 'uuid';
 import {AddItemForm} from "./AddItemForm";
 import {Toolbar, IconButton, AppBar, Typography, Button, Container, Grid, Paper} from '@material-ui/core';
 import {Menu} from '@material-ui/icons';
+import {changeTodolistFilterAC, removeTodolistAC} from "./state/todolists-reduser";
 
 
 export type FilterValueType = "all" | "completed" | "active"
-type TodoListType = {
+export type TodoListType = {
     id: string,
     title: string,
     filter: FilterValueType
 }
-type TasksStateType = { [key: string]: Array<TaskType> }
+export type TasksStateType = { [key: string]: Array<TaskType> }
 
 function App() {
     let todolistId1 = v1();
@@ -75,6 +76,7 @@ function App() {
     }
 
     function removeTodolist(id: string) {
+        // removeTodolistAC(id)
         setTodolists(todolists.filter(tl => tl.id != id))
         delete tasks[id];
         setTasks({...tasks})
@@ -89,6 +91,7 @@ function App() {
     }
 
     function changeFilter(value: FilterValueType, id: string) {
+        // changeTodolistFilterAC(value,id)
         let todolist = todolists.find(tl => tl.id === id);
         if (todolist) {
             todolist.filter = value
