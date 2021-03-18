@@ -1,6 +1,21 @@
-import {TasksStateType} from '../App';
+import {TasksStateType, TodoListType} from '../AppWithRedux';
 import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from "./tasks-reduser";
 import {addTodolistAC, removeTodolistAC} from "./todolists-reduser";
+import {v1} from "uuid";
+
+let todolistId1: string;
+let todolistId2: string;
+
+let startState: Array<TodoListType> = []
+beforeEach(() => {
+    let todolistId1 = v1();
+    let todolistId2 = v1();
+    startState = [
+        {id: todolistId1, title: "What to learn", filter: "all"},
+        {id: todolistId2, title: "What to buy", filter: "all"}]
+})
+
+
 
 test('correct task should be deleted from correct array', () => {
     const startState: TasksStateType = {
