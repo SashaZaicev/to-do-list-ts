@@ -3,11 +3,11 @@ import {Button, TextField, IconButton} from "@material-ui/core";
 import {AddBox} from "@material-ui/icons";
 
 type AddItemFormPropsType = {
-    addItem: (title: string) => void
+    addItem: (title: string, todolistId:string) => void
 };
 
 export const AddItemForm = React.memo(function (props: AddItemFormPropsType) {
-    console.log("AddItemForm is called")
+    // console.log("AddItemForm is called")
     let [title, setTitle] = useState('')
     let [error, setError] = useState<string | null>(null)
     let changeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
